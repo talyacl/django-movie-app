@@ -1,0 +1,38 @@
+{% extends 'base/home.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Register</h2>
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_username">Username</label>
+                            <input type="text" name="username" id="id_username" class="form-control" placeholder="Enter your username" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Email address</label>
+                            <input type="email" name="email" id="id_email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password1">Password</label>
+                            <input type="password" name="password1" id="id_password1" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password2">Confirm password</label>
+                            <input type="password" name="password2" id="id_password2" class="form-control" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+                    </form>
+                    <p class="text-center mt-3">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

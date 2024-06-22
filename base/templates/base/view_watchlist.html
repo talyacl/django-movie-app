@@ -1,0 +1,33 @@
+{% extends 'base/home.html' %}
+
+{% block title %}My Watchlist{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">My Watchlist</h2>
+    {% if watchlist %}
+        {% for item in watchlist %}
+            <div class="movie-card">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://image.tmdb.org/t/p/w200{{ item.movie.poster_path }}" alt="{{ item.movie.title }}">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>{{ item.movie.title }}</h3>
+                        <p>{{ item.movie.overview }}</p>
+                        <p class="release-date">Release Date: {{ item.movie.release_date }}</p>
+                        <a href="{% url 'movie_detail' item.movie.id %}" class="btn btn-primary">View details</a>
+                        <a href="{% url 'remove_from_watchlist' item.movie.tmdb_id %}" class="btn btn-danger">Remove from Watchlist</a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No movies in your watchlist yet.</p>
+    {% endif %}
+    <div class="text-center mb-4">
+        <a href="{% url 'search_movies' %}" class="btn btn-primary btn-lg">Search for more movies</a>
+    </div>
+</div>
+{% endblock %}

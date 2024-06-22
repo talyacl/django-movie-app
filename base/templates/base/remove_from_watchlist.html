@@ -1,0 +1,15 @@
+{% extends 'base/home.html' %}
+
+{% block title %}Remove from Watchlist{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Remove from Watchlist</h2>
+    <p>Are you sure you want to remove "{{ movie.title }}" from your watchlist?</p>
+    <form method="post" action="{% url 'remove_from_watchlist' movie.tmdb_id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Removal</button>
+        <a href="{% url 'view_watchlist' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
